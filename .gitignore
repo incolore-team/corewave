@@ -1,1 +1,10 @@
 build
+.vscode/
+*.ip_user_files/
+*.runs/
+*.sims/
+*.cache/
+*.hw/
+vivado.jou
+vivado.log
+vivado*.str
