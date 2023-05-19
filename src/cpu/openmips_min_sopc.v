@@ -1,9 +1,10 @@
-`include "../defines.v"
+`include "defines.v"
 
 module openmips_min_sopc(
 
 	input	wire										clk,
-	input wire										rst
+	input wire										rst,
+	output wire led
 	
 );
 
@@ -19,6 +20,8 @@ module openmips_min_sopc(
   wire mem_ce_i;   
   wire[5:0] int;
   wire timer_int;
+  
+  assign led = mem_ce_i;
  
   //assign int = {5'b00000, timer_int, gpio_int, uart_int};
   assign int = {5'b00000, timer_int};
