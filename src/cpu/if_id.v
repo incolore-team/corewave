@@ -1,4 +1,4 @@
-`include "../defines.v"
+`include "defines.v"
 
 module if_id (
 
@@ -7,7 +7,6 @@ module if_id (
 
     //来自控制模块的信息
     input wire [5:0] stall,
-    input wire       flush,
 
     input  wire [`InstAddrBus] if_pc,
     input  wire [    `InstBus] if_inst,
@@ -18,9 +17,6 @@ module if_id (
 
     always @(posedge clk) begin
         if (rst == `RstEnable) begin
-            id_pc   <= `ZeroWord;
-            id_inst <= `ZeroWord;
-        end else if (flush == 1'b1) begin
             id_pc   <= `ZeroWord;
             id_inst <= `ZeroWord;
         end else if (stall[1] == `Stop && stall[2] == `NoStop) begin
