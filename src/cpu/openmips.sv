@@ -59,7 +59,7 @@ module openmips (
     logic [`RegBus] mem_lo_o;
     logic mem_whilo_o;
 
-    //连接MEM/WB模块的输出与回写阶段的输入	
+    //连接MEM/WB模块的输出与回写阶段的输入
     logic wb_wreg_i;
     logic [`RegAddrBus] wb_wd_i;
     logic [`RegBus] wb_wdata_i;
@@ -278,7 +278,7 @@ module openmips (
 
         .stall(stall),
 
-        //来自执行阶段EX模块的信息	
+        //来自执行阶段EX模块的信息
         .ex_wd(ex_wd_o),
         .ex_wreg(ex_wreg_o),
         .ex_wdata(ex_wdata_o),

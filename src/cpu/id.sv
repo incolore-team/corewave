@@ -46,16 +46,20 @@ module id (
     output logic stallreq
 );
 
-    logic [5:0] op = inst_i[31:26];
-    logic [4:0] op2 = inst_i[10:6];
-    logic [5:0] op3 = inst_i[5:0];
-    logic [4:0] op4 = inst_i[20:16];
+    logic [5:0] op;
+    logic [4:0] op2;
+    logic [5:0] op3;
+    logic [4:0] op4;
     logic [`RegBus] imm;
     logic instvalid;
     logic [`RegBus] pc_plus_8;
     logic [`RegBus] pc_plus_4;
     logic [`RegBus] imm_sll2_signedext;
 
+    assign op = inst_i[31:26];
+    assign op2 = inst_i[10:6];
+    assign op3 = inst_i[5:0];
+    assign op4 = inst_i[20:16];
     assign pc_plus_8          = pc_i + 8;
     assign pc_plus_4          = pc_i + 4;
     assign imm_sll2_signedext = {{14{inst_i[15]}}, inst_i[15:0], 2'b00};

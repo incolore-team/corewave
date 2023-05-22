@@ -240,7 +240,7 @@ module ex (
         end
     end
 
-    //DIV、DIVU指令	
+    //DIV、DIVU指令
     always_comb begin
         if (rst == `RstEnable) begin
             stallreq_for_div = `NoStop;

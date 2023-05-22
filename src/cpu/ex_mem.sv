@@ -30,9 +30,7 @@ module ex_mem (
     output logic [`DoubleRegBus] hilo_o,
     output logic [          1:0] cnt_o
 
-
 );
-
 
     always_ff @(posedge clk) begin
         if (rst == `RstEnable) begin

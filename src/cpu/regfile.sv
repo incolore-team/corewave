@@ -22,7 +22,13 @@ module regfile (
 
 );
 
-    logic [`RegBus] regs[0:`RegNum-1];
+    logic [`RegBus][0:`RegNum-1] regs;
+
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            regs <= '0;
+        end
+    end
 
     always_ff @(posedge clk) begin
         if (rst == `RstDisable) begin

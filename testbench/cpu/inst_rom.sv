@@ -11,8 +11,6 @@ module inst_rom (
 
     logic [`InstBus] inst_mem[0:`InstMemNum-1];
 
-    initial $readmemh("testbench/cpu/testcases/inst/ori.mem", inst_mem);
-
     always_comb begin
         if (ce == `ChipDisable) begin
             inst = `ZeroWord;
