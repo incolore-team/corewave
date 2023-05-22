@@ -1,4 +1,0 @@
-Vivado Simulator 2019.2
-Time resolution is 1 ps
-WARNING: File ori.mem referenced on /home/incolore/corewave/testbench/cpu/inst_rom.sv at line 14 cannot be opened for reading. Please ensure that this file is available in the current working directory.
-ERROR: Could not open VCD file build/wave.vcd for writing.
