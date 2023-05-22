@@ -1,0 +1,32 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/ctrl.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ctrl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/div.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module div
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/ex.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ex
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/ex_mem.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ex_mem
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/hilo_reg.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module hilo_reg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/id.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module id
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/id_ex.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module id_ex
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/if_id.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module if_id
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/testbench/cpu/inst_rom.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module inst_rom
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/mem.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mem
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/mem_wb.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mem_wb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/openmips.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module openmips
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/openmips_min_sopc.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module openmips_min_sopc
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/pc_reg.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pc_reg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/src/cpu/regfile.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module regfile
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/incolore/corewave/testbench/cpu/openmips_min_sopc_tb.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module openmips_min_sopc_tb
