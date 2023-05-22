@@ -4,7 +4,7 @@ module mem (
 
     input logic rst,
 
-    //来自执行阶段的信息	
+    //来自执行阶段的信息
     input logic [`RegAddrBus] wd_i,
     input logic               wreg_i,
     input logic [    `RegBus] wdata_i,

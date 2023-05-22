@@ -3,8 +3,12 @@
 
 module openmips_min_sopc_tb ();
 
-    logic CLOCK_50;
-    logic rst;
+    logic                CLOCK_50;
+    logic                rst;
+
+    logic                rom_ce;
+    logic [`InstAddrBus] inst_addr;
+    logic [    `InstBus] inst;
 
     initial begin
         $dumpfile("build/wave.vcd");
@@ -24,7 +28,17 @@ module openmips_min_sopc_tb ();
 
     openmips_min_sopc openmips_min_sopc0 (
         .clk(CLOCK_50),
-        .rst(rst)
+        .rst(rst),
+
+        .rom_ce(rom_ce),
+        .inst_addr(inst_addr),
+        .inst(inst)
+    );
+
+    inst_rom inst_rom0 (
+        .ce  (rom_ce),
+        .addr(inst_addr),
+        .inst(inst)
     );
 
 endmodule

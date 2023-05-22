@@ -171,8 +171,8 @@
 //指令存储器inst_rom
 `define InstAddrBus 31:0
 `define InstBus 31:0
-`define InstMemNum 131071
-`define InstMemNumLog2 17
+`define InstMemNum 127
+`define InstMemNumLog2 7
 
 
 //通用寄存器regfile

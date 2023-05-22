@@ -2,18 +2,15 @@
 
 module openmips_min_sopc (
 
-    input  logic clk,
-    input  logic rst,
-    output logic led
-
-);
+    input logic clk,
+    input logic rst,
 
     //连接指令存储器
-    logic [`InstAddrBus] inst_addr;
-    logic [`InstBus] inst;
-    logic rom_ce;
+    output logic                rom_ce,
+    output logic [`InstAddrBus] inst_addr,
+    input  logic [    `InstBus] inst
 
-    assign led = rom_ce;
+);
 
     openmips openmips0 (
         .clk(clk),
@@ -23,12 +20,6 @@ module openmips_min_sopc (
         .rom_data_i(inst),
         .rom_ce_o  (rom_ce)
 
-    );
-
-    inst_rom inst_rom0 (
-        .ce  (rom_ce),
-        .addr(inst_addr),
-        .inst(inst)
     );
 
 endmodule

@@ -5,7 +5,6 @@ module openmips (
     input logic clk,
     input logic rst,
 
-
     input  logic [`RegBus] rom_data_i,
     output logic [`RegBus] rom_addr_o,
     output logic           rom_ce_o
