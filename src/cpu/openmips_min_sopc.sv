@@ -1,17 +1,17 @@
-`include "defines.v"
+`include "defines.svh"
 
 module openmips_min_sopc (
 
-    input  wire clk,
-    input  wire rst,
-    output wire led
+    input  logic clk,
+    input  logic rst,
+    output logic led
 
 );
 
     //连接指令存储器
-    wire [`InstAddrBus] inst_addr;
-    wire [`InstBus] inst;
-    wire rom_ce;
+    logic [`InstAddrBus] inst_addr;
+    logic [`InstBus] inst;
+    logic rom_ce;
 
     assign led = rom_ce;
 

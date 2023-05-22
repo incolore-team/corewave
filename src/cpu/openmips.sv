@@ -1,109 +1,109 @@
-`include "defines.v"
+`include "defines.svh"
 
 module openmips (
 
-    input wire clk,
-    input wire rst,
+    input logic clk,
+    input logic rst,
 
 
-    input  wire [`RegBus] rom_data_i,
-    output wire [`RegBus] rom_addr_o,
-    output wire           rom_ce_o
+    input  logic [`RegBus] rom_data_i,
+    output logic [`RegBus] rom_addr_o,
+    output logic           rom_ce_o
 
 );
 
-    wire [`InstAddrBus] pc;
-    wire [`InstAddrBus] id_pc_i;
-    wire [`InstBus] id_inst_i;
+    logic [`InstAddrBus] pc;
+    logic [`InstAddrBus] id_pc_i;
+    logic [`InstBus] id_inst_i;
 
     //连接译码阶段ID模块的输出与ID/EX模块的输入
-    wire [`AluOpBus] id_aluop_o;
-    wire [`AluSelBus] id_alusel_o;
-    wire [`RegBus] id_reg1_o;
-    wire [`RegBus] id_reg2_o;
-    wire id_wreg_o;
-    wire [`RegAddrBus] id_wd_o;
-    wire id_is_in_delayslot_o;
-    wire [`RegBus] id_link_address_o;
+    logic [`AluOpBus] id_aluop_o;
+    logic [`AluSelBus] id_alusel_o;
+    logic [`RegBus] id_reg1_o;
+    logic [`RegBus] id_reg2_o;
+    logic id_wreg_o;
+    logic [`RegAddrBus] id_wd_o;
+    logic id_is_in_delayslot_o;
+    logic [`RegBus] id_link_address_o;
 
     //连接ID/EX模块的输出与执行阶段EX模块的输入
-    wire [`AluOpBus] ex_aluop_i;
-    wire [`AluSelBus] ex_alusel_i;
-    wire [`RegBus] ex_reg1_i;
-    wire [`RegBus] ex_reg2_i;
-    wire ex_wreg_i;
-    wire [`RegAddrBus] ex_wd_i;
-    wire ex_is_in_delayslot_i;
-    wire [`RegBus] ex_link_address_i;
+    logic [`AluOpBus] ex_aluop_i;
+    logic [`AluSelBus] ex_alusel_i;
+    logic [`RegBus] ex_reg1_i;
+    logic [`RegBus] ex_reg2_i;
+    logic ex_wreg_i;
+    logic [`RegAddrBus] ex_wd_i;
+    logic ex_is_in_delayslot_i;
+    logic [`RegBus] ex_link_address_i;
 
     //连接执行阶段EX模块的输出与EX/MEM模块的输入
-    wire ex_wreg_o;
-    wire [`RegAddrBus] ex_wd_o;
-    wire [`RegBus] ex_wdata_o;
-    wire [`RegBus] ex_hi_o;
-    wire [`RegBus] ex_lo_o;
-    wire ex_whilo_o;
+    logic ex_wreg_o;
+    logic [`RegAddrBus] ex_wd_o;
+    logic [`RegBus] ex_wdata_o;
+    logic [`RegBus] ex_hi_o;
+    logic [`RegBus] ex_lo_o;
+    logic ex_whilo_o;
 
     //连接EX/MEM模块的输出与访存阶段MEM模块的输入
-    wire mem_wreg_i;
-    wire [`RegAddrBus] mem_wd_i;
-    wire [`RegBus] mem_wdata_i;
-    wire [`RegBus] mem_hi_i;
-    wire [`RegBus] mem_lo_i;
-    wire mem_whilo_i;
+    logic mem_wreg_i;
+    logic [`RegAddrBus] mem_wd_i;
+    logic [`RegBus] mem_wdata_i;
+    logic [`RegBus] mem_hi_i;
+    logic [`RegBus] mem_lo_i;
+    logic mem_whilo_i;
 
     //连接访存阶段MEM模块的输出与MEM/WB模块的输入
-    wire mem_wreg_o;
-    wire [`RegAddrBus] mem_wd_o;
-    wire [`RegBus] mem_wdata_o;
-    wire [`RegBus] mem_hi_o;
-    wire [`RegBus] mem_lo_o;
-    wire mem_whilo_o;
+    logic mem_wreg_o;
+    logic [`RegAddrBus] mem_wd_o;
+    logic [`RegBus] mem_wdata_o;
+    logic [`RegBus] mem_hi_o;
+    logic [`RegBus] mem_lo_o;
+    logic mem_whilo_o;
 
     //连接MEM/WB模块的输出与回写阶段的输入	
-    wire wb_wreg_i;
-    wire [`RegAddrBus] wb_wd_i;
-    wire [`RegBus] wb_wdata_i;
-    wire [`RegBus] wb_hi_i;
-    wire [`RegBus] wb_lo_i;
-    wire wb_whilo_i;
+    logic wb_wreg_i;
+    logic [`RegAddrBus] wb_wd_i;
+    logic [`RegBus] wb_wdata_i;
+    logic [`RegBus] wb_hi_i;
+    logic [`RegBus] wb_lo_i;
+    logic wb_whilo_i;
 
     //连接译码阶段ID模块与通用寄存器Regfile模块
-    wire reg1_read;
-    wire reg2_read;
-    wire [`RegBus] reg1_data;
-    wire [`RegBus] reg2_data;
-    wire [`RegAddrBus] reg1_addr;
-    wire [`RegAddrBus] reg2_addr;
+    logic reg1_read;
+    logic reg2_read;
+    logic [`RegBus] reg1_data;
+    logic [`RegBus] reg2_data;
+    logic [`RegAddrBus] reg1_addr;
+    logic [`RegAddrBus] reg2_addr;
 
     //连接执行阶段与hilo模块的输出，读取HI、LO寄存器
-    wire [`RegBus] hi;
-    wire [`RegBus] lo;
+    logic [`RegBus] hi;
+    logic [`RegBus] lo;
 
     //连接执行阶段与ex_reg模块，用于多周期的MADD、MADDU、MSUB、MSUBU指令
-    wire [`DoubleRegBus] hilo_temp_o;
-    wire [1:0] cnt_o;
+    logic [`DoubleRegBus] hilo_temp_o;
+    logic [1:0] cnt_o;
 
-    wire [`DoubleRegBus] hilo_temp_i;
-    wire [1:0] cnt_i;
+    logic [`DoubleRegBus] hilo_temp_i;
+    logic [1:0] cnt_i;
 
-    wire [`DoubleRegBus] div_result;
-    wire div_ready;
-    wire [`RegBus] div_opdata1;
-    wire [`RegBus] div_opdata2;
-    wire div_start;
-    wire div_annul;
-    wire signed_div;
+    logic [`DoubleRegBus] div_result;
+    logic div_ready;
+    logic [`RegBus] div_opdata1;
+    logic [`RegBus] div_opdata2;
+    logic div_start;
+    logic div_annul;
+    logic signed_div;
 
-    wire is_in_delayslot_i;
-    wire is_in_delayslot_o;
-    wire next_inst_in_delayslot_o;
-    wire id_branch_flag_o;
-    wire [`RegBus] branch_target_address;
+    logic is_in_delayslot_i;
+    logic is_in_delayslot_o;
+    logic next_inst_in_delayslot_o;
+    logic id_branch_flag_o;
+    logic [`RegBus] branch_target_address;
 
-    wire [5:0] stall;
-    wire stallreq_from_id;
-    wire stallreq_from_ex;
+    logic [5:0] stall;
+    logic stallreq_from_id;
+    logic stallreq_from_ex;
 
     //pc_reg例化
     pc_reg pc_reg0 (

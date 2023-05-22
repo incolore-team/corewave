@@ -1,10 +1,10 @@
-`include "defines.v"
+`include "defines.svh"
 `timescale 1ns / 1ps
 
 module openmips_min_sopc_tb ();
 
-    reg CLOCK_50;
-    reg rst;
+    logic CLOCK_50;
+    logic rst;
 
     initial begin
         $dumpfile("build/wave.vcd");

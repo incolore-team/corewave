@@ -1,22 +1,22 @@
-`include "defines.v"
+`include "defines.svh"
 
 module hilo_reg (
 
-    input wire clk,
-    input wire rst,
+    input logic clk,
+    input logic rst,
 
     //写端口
-    input wire           we,
-    input wire [`RegBus] hi_i,
-    input wire [`RegBus] lo_i,
+    input logic           we,
+    input logic [`RegBus] hi_i,
+    input logic [`RegBus] lo_i,
 
     //读端口1
-    output reg [`RegBus] hi_o,
-    output reg [`RegBus] lo_o
+    output logic [`RegBus] hi_o,
+    output logic [`RegBus] lo_o
 
 );
 
-    always @(posedge clk) begin
+    always_ff @(posedge clk) begin
         if (rst == `RstEnable) begin
             hi_o <= `ZeroWord;
             lo_o <= `ZeroWord;

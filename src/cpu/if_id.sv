@@ -1,21 +1,21 @@
-`include "defines.v"
+`include "defines.svh"
 
 module if_id (
 
-    input wire clk,
-    input wire rst,
+    input logic clk,
+    input logic rst,
 
     //来自控制模块的信息
-    input wire [5:0] stall,
+    input logic [5:0] stall,
 
-    input  wire [`InstAddrBus] if_pc,
-    input  wire [    `InstBus] if_inst,
-    output reg  [`InstAddrBus] id_pc,
-    output reg  [    `InstBus] id_inst
+    input  logic [`InstAddrBus] if_pc,
+    input  logic [    `InstBus] if_inst,
+    output logic [`InstAddrBus] id_pc,
+    output logic [    `InstBus] id_inst
 
 );
 
-    always @(posedge clk) begin
+    always_ff @(posedge clk) begin
         if (rst == `RstEnable) begin
             id_pc   <= `ZeroWord;
             id_inst <= `ZeroWord;
