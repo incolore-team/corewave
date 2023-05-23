@@ -57,25 +57,23 @@ brew uninstall protobuf
 工作区设置：
 
 ```json
-    "settings": {
+	"settings": {
 		"verilog.linting.linter": "iverilog",
-		"verilog.linting.iverilog.arguments": "-g 2012 -Y .v -y source/mycpu -I source/include -grelative-include",
+		"verilog.linting.iverilog.arguments": "-g2012 -DIVERILOG -Y .sv -y src/cpu -y testbench/cpu -I src -grelative-include",
 		"verilog.formatting.veribleVerilogFormatter.path": "/opt/homebrew/Cellar/verible/0.0-3087-gaac4fadc/bin/verible-verilog-format",
 		"verilog.formatting.verilogHDL.formatter": "verible-verilog-format",
 		"verilog.languageServer.veribleVerilogLs.enabled": true,
 		"verilog.languageServer.veribleVerilogLs.path": "/opt/homebrew/Cellar/verible/0.0-3087-gaac4fadc/bin/verible-verilog-ls",
 		"verilog.formatting.veribleVerilogFormatter.arguments": "--indentation_spaces=4",
 		"code-runner.executorMapByFileExtension": {
-			".v": "cd $workspaceRoot && iverilog -o build/wave -Y .v -y source/mycpu -I source/include -grelative-include `ls source/*_tb.v` && vvp -n build/wave -lxt2 && gtkwave build/wave.vcd",
+			".sv": "cd $workspaceRoot && iverilog -o build/wave -g2012 -DIVERILOG -Y .sv -y src/cpu -y testbench/cpu -I src -grelative-include `ls testbench/cpu/*_tb.sv` && vvp -n build/wave -lxt2 && gtkwave build/wave.vcd",
 		},
-		"systemverilog.formatCommand": "/opt/homebrew/Cellar/verible/0.0-3087-gaac4fadc/bin/verible-verilog-format --indentation_spaces=4",
+		"systemverilog.formatCommand": "/opt/homebrew/Cellar/verible/0.0-3087-gaac4fadc/bin/verible-verilog-format --indentation_spaces=4 --assignment_statement_alignment=align",
+		"[verilog]": {
+			"editor.defaultFormatter": "eirikpre.systemverilog"
+		},
+		"[systemverilog]": {
+			"editor.defaultFormatter": "eirikpre.systemverilog"
+		},
 	}
-```
-
-用户设置：
-
-```json
-    "[verilog]": {
-        "editor.defaultFormatter": "eirikpre.systemverilog"
-    },
 ```
