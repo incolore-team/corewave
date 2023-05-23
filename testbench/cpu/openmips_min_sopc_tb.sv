@@ -17,6 +17,7 @@ module openmips_min_sopc_tb ();
         $dumpvars(0, openmips_min_sopc_tb);
     end
 `endif
+
     logic                clk;
     logic                rst;
 
@@ -125,6 +126,11 @@ module openmips_min_sopc_tb ();
         wait (rst == 1'b0);
         summary = "";
         unittest("inst/ori");
+        unittest("inst/logical");
+        unittest("inst/shift");
+        unittest("inst/move");
+        unittest("inst/arith");
+        unittest("inst/jump");
         $display(summary);
         $display("[Done]\n");
         $finish;
