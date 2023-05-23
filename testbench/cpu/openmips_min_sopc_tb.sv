@@ -1,23 +1,22 @@
 `include "defines.svh"
 `timescale 1ns / 1ps
 
-`ifdef IVERILOG
+`ifdef __ICARUS__
 `define PATH_PREFIX "./"
 `elsif XILINX_SIMULATOR
-`define PATH_PREFIX "../../../"
+`define PATH_PREFIX "../../../../../../"
 `else
 `define PATH_PREFIX "./"
 `endif
 
 module openmips_min_sopc_tb ();
 
-`ifdef IVERILOG
+`ifdef __ICARUS__
     initial begin
         $dumpfile("build/wave.vcd");
         $dumpvars(0, openmips_min_sopc_tb);
     end
 `endif
-
     logic                clk;
     logic                rst;
 
