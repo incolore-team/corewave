@@ -61,7 +61,7 @@ cpu_simulation:
     - vivado
   stage: cpu_test
   script:
-    - export SIMULATION=cpu_test
+    - export SIMULATION=sim_1
     - export LOG_PATH=${PROJECT_DIR}/${PROJECT_NAME}.sim/${SIMULATION}/behav/xsim/simulate.log
     - export FLAG='Done'
     - ${VIVADO_PATH} -mode tcl -source scripts/run_simulation.tcl ${PROJECT_DIR}/${PROJECT_NAME}.xpr
