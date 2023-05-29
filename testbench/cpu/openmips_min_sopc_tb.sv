@@ -100,21 +100,22 @@ module openmips_min_sopc_tb ();
             @(negedge clk);
             cycle = cycle + 1;
 
-            if (openmips_min_sopc0.openmips0.wb_wd_i != '0) begin
+            if (openmips_min_sopc0.openmips0.wb_wreg_i &&
+                openmips_min_sopc0.openmips0.wb_wd_i != '0) begin
                 $sformat(out, "$%0d=0x%x", openmips_min_sopc0.openmips0.wb_wd_i,
                          openmips_min_sopc0.openmips0.wb_wdata_i);
                 judge(fans, cycle, out);
-                last_write = openmips_min_sopc0.openmips0.wb_wdata_i;
             end
 
-            // if (openmips_min_sopc0.openmips0.mem_whilo_i) begin
-            //     $sformat(out, "$hilo=0x%x", pipe_wb[0].hiloreq.wdata);
-            //     judge(fans, cycle, out);
-            // end
+            if (openmips_min_sopc0.openmips0.wb_whilo_i) begin
+                $sformat(out, "$hilo=0x%x%x", openmips_min_sopc0.openmips0.wb_hi_i,
+                         openmips_min_sopc0.openmips0.wb_lo_i);
+                judge(fans, cycle, out);
+            end
         end
 
         $display("[OK] %0s\n", name);
-        $sformat(summary, "%0s%0s: CPI = %f\n", summary, name, $itor(cycle) / $itor (instr_count));
+        $sformat(summary, "%0s%0s: CPI = %f\n", summary, name, $itor(cycle) / $itor(instr_count));
 
     endtask
 

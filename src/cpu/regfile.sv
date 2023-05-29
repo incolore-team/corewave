@@ -22,11 +22,14 @@ module regfile (
 
 );
 
-    logic [`RegBus][0:`RegNum-1] regs;
+    logic [`RegBus] regs[0:`RegNum-1];
 
     always_ff @(posedge clk) begin
-        if (rst) begin
-            regs <= '0;
+        integer i;
+        if (rst == `RstEnable) begin
+            for (i = 0; i < `RegNum; i = i + 1) begin
+                regs[i] <= '0;
+            end
         end
     end
 
